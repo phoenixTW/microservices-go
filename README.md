@@ -1,11 +1,9 @@
 # Golang Microservices Boilerplate - Clean Architecture
 
 [![issues](https://img.shields.io/github/issues/phoenixTW/microservices-go)](https://github.com/phoenixTW/microservices-go/tree/master/.github/ISSUE_TEMPLATE)
-[![forks](https://img.shields.io/github/forks/phoenixTW/microservices-go)](https://github.com/phoenixTW/microservices-go/network/members)
-[![stars](https://img.shields.io/github/stars/phoenixTW/microservices-go)](https://github.com/phoenixTW/microservices-go/stargazers)
 [![license](https://img.shields.io/github/license/phoenixTW/microservices-go)](https://github.com/phoenixTW/microservices-go/tree/master/LICENSE)
-[![CodeFactor](https://www.codefactor.io/repository/github/phoenixTW/microservices-go/badge/main)](https://www.codefactor.io/repository/github/phoenixTW/microservices-go/overview/main)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6c10cc49928447f38952edaab67a94a4)](https://www.codacy.com/gh/phoenixTW/microservices-go/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=phoenixTW/microservices-go&amp;utm_campaign=Badge_Grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/phoenixtw/microservices-go/badge)](https://www.codefactor.io/repository/github/phoenixtw/microservices-go)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9a323c190f2758377150/maintainability)](https://codeclimate.com/github/phoenixTW/microservices-go/maintainability)
 
 Example structure to start a microservices project with golang. Using a MySQL databaseSQL. Using a Hexagonal
 Architecture tha is a Clean Architecture.
