@@ -1,0 +1,264 @@
+basePath: /v1
+definitions:
+  auth.AccessTokenRequest:
+    properties:
+      refreshToken:
+        example: badbunybabybebe
+        type: string
+    required:
+    - refreshToken
+    type: object
+  auth.DataUserAuthenticated:
+    properties:
+      email:
+        example: some@mail.com
+        type: string
+      firstName:
+        example: John
+        type: string
+      id:
+        example: 123
+        type: integer
+      lastName:
+        example: Doe
+        type: string
+      role:
+        example: admin
+        type: string
+      status:
+        example: true
+        type: boolean
+      userName:
+        example: UserName
+        type: string
+    type: object
+  auth.LoginRequest:
+    properties:
+      email:
+        example: mail@mail.com
+        type: string
+      password:
+        example: Password123
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  controllers.MessageResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  user.MessageResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  user.NewUserRequest:
+    properties:
+      email:
+        example: mail@mail.com
+        type: string
+      firstName:
+        example: John
+        type: string
+      lastName:
+        example: Doe
+        type: string
+      password:
+        example: Password123
+        type: string
+      role:
+        example: admin
+        type: string
+      user:
+        example: someUser
+        type: string
+    required:
+    - email
+    - firstName
+    - lastName
+    - password
+    - role
+    - user
+    type: object
+  user.ResponseUser:
+    properties:
+      createdAt:
+        example: "2021-02-24 20:19:39"
+        type: string
+      email:
+        example: some@mail.com
+        type: string
+      firstName:
+        example: John
+        type: string
+      id:
+        example: 1099
+        type: integer
+      lastName:
+        example: Doe
+        type: string
+      status:
+        example: false
+        type: boolean
+      updatedAt:
+        example: "2021-02-24 20:19:39"
+        type: string
+      user:
+        example: BossonH
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: hi@iamkaustav.com
+    name: Kaustav Chakraborty
+    url: http://github.com/phoenixTW
+  description: Documentation's Boilerplate Golang
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Boilerplate Golang
+  version: "1.0"
+paths:
+  /auth/access-token:
+    post:
+      description: Auth user by email and password
+      parameters:
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/auth.AccessTokenRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.DataUserAuthenticated'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.MessageResponse'
+      summary: GetAccessTokenByRefreshToken UserName
+      tags:
+      - auth
+  /auth/login:
+    post:
+      description: Auth user by email and password
+      parameters:
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginRequest'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.DataUserAuthenticated'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controllers.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controllers.MessageResponse'
+      summary: Login UserName
+      tags:
+      - auth
+  /user:
+    get:
+      description: Get all Users on the system
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/user.ResponseUser'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get all Users
+      tags:
+      - user
+    post:
+      consumes:
+      - application/json
+      description: Create new user on the system
+      parameters:
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/user.NewUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.ResponseUser'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Create New UserName
+      tags:
+      - user
+  /user/{user_id}:
+    get:
+      description: Get Users by ID on the system
+      parameters:
+      - description: id of user
+        in: path
+        name: user_id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/user.MessageResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: Get users by ID
+      tags:
+      - user
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
